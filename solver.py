@@ -102,6 +102,9 @@ def solve_board(board: List[List[int]]) -> None:
     write_to(board_str)
     return False
 
+#---------------------------------------------------------
+# Solutions Notetaking
+#---------------------------------------------------------
 def write_to(board_str: str) -> None:
     with open("solution.txt", "a") as solution:
         solution.write("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>\n")
