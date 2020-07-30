@@ -1,5 +1,6 @@
 import practice_boards
 from typing import List, Tuple, Optional
+from random import randint
 
 #---------------------------------------------------------
 # BOARD VIEWER
@@ -85,13 +86,17 @@ def validity(board: List[List[int]], number: int, position: Tuple[int, int]) -> 
 #---------------------------------------------------------
 # BACKTRACKING ALGORITHM
 #---------------------------------------------------------
-def solve_board(board: List[List[int]]) -> None:
+def solve_board(board: List[List[int]], random=False) -> None:
     position = locate_empty(board)
     if position is None:    # Base case is that the board is already solved.
         return True
     else:
         row_num, col_num = position[0], position[1]
-        for possible_number in range(1, 10): # Loops through the possible values 1-9 inclusive.
+        for i in range(1, 10): # Loops through the possible values 1-9 inclusive.
+            if random:
+                possible_number = randint(1, 9)
+            else:
+                possible_number = i
             if validity(board, possible_number, position):
                 board[row_num][col_num] = possible_number
 
