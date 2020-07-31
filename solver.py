@@ -1,5 +1,5 @@
 import practice_boards
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Union
 from random import randint
 
 #---------------------------------------------------------
@@ -114,3 +114,19 @@ def write_to(board_str: str) -> None:
     with open("solution.txt", "a") as solution:
         solution.write("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>\n")
         solution.write(board_str)
+
+#---------------------------------------------------------
+# SOLVED CHECKER
+#---------------------------------------------------------
+def is_solved(board: List[List[int]]) -> Union[bool, str]:
+    """
+    Returns True if board is solved and False otherwise.
+    """
+    for i in range(len(board)):
+        for j in range(len(board)):
+            entry = board[i][j]
+            board[i][j] = 0
+            if not validity(board, entry, (i, j)):
+                return f"Incorrect Solution.\n'{entry}' is not valid at ({i + 1}, {j + 1})"
+            board[i][j] = entry
+    return True
